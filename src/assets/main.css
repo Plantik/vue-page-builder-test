@@ -4,5 +4,10 @@
 
 
 @layer components {
-   
+
+
+    .draggableThumbnail {
+        @apply p-5 bg-white shadow hover:shadow-xl transition-all duration-300 rounded hover:cursor-move h-40 w-40 flex place-content-center place-items-center hover:animate-wiggle
+    }
+
 }

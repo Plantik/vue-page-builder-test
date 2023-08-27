@@ -10,8 +10,8 @@
         <section :class="$style.sideMenuComponent">
           <p class="mb-6 ml-3 text-2xl font-bold border-b-4">Building Blocks</p>
           <div class="flex text-xl flex-col gap-4 p-3">
-           <div class="h-40 w-40 bg-slate-100"></div>
-           <div class="h-40 w-40 bg-slate-100"></div>
+            <TextBlockThumbnail />
+            <ImageBlockThumbnail />
 
           </div>
         </section>
@@ -20,7 +20,8 @@
   </template>
   
   <script setup>
- 
+ import TextBlockThumbnail from '@/components/TextBlockThumbnail.vue'
+ import ImageBlockThumbnail from '@/components/ImageBlockThumbnail.vue'
   
   
   
