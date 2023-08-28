@@ -19,7 +19,7 @@
   }
 
   .secondaryButton {
-    @apply rounded-full bg-white px-3 py-1.5 mt-2 text-violet-600 border hover:border-violet-600 font-normal shadow-md shadow-violet-200;
+    @apply rounded-full bg-white px-3 py-1.5 mt-2 text-violet-600 border hover:border-violet-600 font-normal shadow-md shadow-violet-600;
   }
 
 }
