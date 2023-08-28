@@ -1,6 +1,48 @@
 <template>
   <div>
-    
+    <BaseModalOverlay
+      v-show="isModalOverlayVisible"
+      @performAction="setNewImage"
+      @close="closeModalOverlay"
+    >
+      <template v-slot:modal-header>Select image</template>
+      <template v-slot:modal-content>
+        <!-- Below <div> should be abstracted into a separete ImageSelector component that would be populated 
+          with images from the server and have it's own drop functionality to add user-generated images
+        -->
+        <div class="w-full h-full">
+          <div class="flex space-x-2">
+            <img
+              @click="handleImageClick('goa.jpg')"
+              :class="[
+                ' h-40 cursor-default',
+                selectedImage === 'goa.jpg' ? 'transform -translate-y-3 duration-300' : ''
+              ]"
+              src="../assets/pics/goa.jpg"
+              alt=""
+            />
+            <img
+              @click="handleImageClick('bike.jpg')"
+              :class="[
+                ' h-40',
+                selectedImage === 'bike.jpg' ? 'transform -translate-y-3 duration-300' : ''
+              ]"
+              src="../assets/pics/bike.jpg"
+              alt=""
+            />
+            <img
+              @click="handleImageClick('carlson.jpg')"
+              :class="[
+                ' h-40',
+                selectedImage === 'carlson.jpg' ? 'transform -translate-y-3 duration-300' : ''
+              ]"
+              src="../assets/pics/carlson.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </template>
+    </BaseModalOverlay>
     <BaseDrop
       class="min-h-[700px] border border-dotted border-slate-400 bg-violet-100 p-2 my-5"
       @drop="handleDrop"
@@ -42,6 +84,7 @@
 <script setup>
 import BaseDrop from './base/BaseDrop.vue'
 import BaseDrag from './base/BaseDrag.vue'
+import BaseModalOverlay from './base/BaseModalOverlay.vue'
 
 import ImageBlock from './ImageBlock.vue'
 import TextBlock from './TextBlock.vue'
@@ -50,8 +93,20 @@ import { ref, watch, computed } from 'vue'
 
 const blocks = ref([])
 const targetItemId = ref(null)
+const selectedImage = ref(null)
+const imageCardId = ref(null)
 
+const handleImageClick = (imageName) => {
+  selectedImage.value = imageName
+}
 
+const isModalOverlayVisible = ref(false)
+
+const closeModalOverlay = () => {
+  isModalOverlayVisible.value = false
+}
+
+// Should be abstracted into a separate service or helper function
 
 function generateUniqueId() {
   const timestamp = Date.now()
@@ -144,5 +199,37 @@ function duplicateText(id) {
 }
 
 
+// updateText should be unit tested tested
 
+function updateText(id, text) {
+  const index = blocks.value.findIndex((item) => item.id === id)
+  const item = blocks.value[index]
+    blocks.value.splice(index, 1, {
+      ...item,
+      text: text
+    })
+}
+
+function prepareImage(id) {
+  isModalOverlayVisible.value = true
+  imageCardId.value = id
+}
+
+
+// setNewImage should be unit tested
+
+function setNewImage() {
+  const index = blocks.value.findIndex((item) => item.id === imageCardId.value)
+  const item = blocks.value[index]
+  isModalOverlayVisible.value = false
+
+  //SetTimout emulates network delay. TODO: replace with real network call, add loading state and spinner
+  setTimeout(() => {
+    blocks.value.splice(index, 1, {
+      ...item,
+      imgLink: `../pics/${selectedImage.value}`
+    })
+    selectedImage.value = null
+  }, 800)
+}
 </script>

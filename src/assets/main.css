@@ -6,16 +6,20 @@
 @layer components {
 
 
-    .draggableThumbnail {
-        @apply p-5 bg-white shadow hover:shadow-xl transition-all duration-300 rounded hover:cursor-move h-40 w-40 flex place-content-center place-items-center hover:animate-wiggle
-    }
+  .overlay {
+    @apply z-30 fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-blue-900 bg-opacity-0
+  }
 
-    .button {
-        @apply rounded-full bg-violet-500 px-3 py-1.5 mt-2 text-white hover:bg-violet-600 font-normal shadow-md shadow-violet-200;
-      }
-      
-    .secondaryButton {
-        @apply rounded-full bg-white  px-3 py-1.5 mt-2 text-violet-600 border hover:border-violet-600 font-normal shadow-md shadow-violet-200;
-      }
+  .draggableThumbnail {
+    @apply p-5 bg-white shadow hover:shadow-xl transition-all duration-300 rounded hover:cursor-move h-40 w-40 flex place-content-center place-items-center hover:animate-wiggle
+  }
+
+  .button {
+    @apply rounded-full bg-violet-500 px-3 py-1.5 mt-2 text-white hover:bg-violet-600 font-normal shadow-md shadow-violet-200;
+  }
+
+  .secondaryButton {
+    @apply rounded-full bg-white px-3 py-1.5 mt-2 text-violet-600 border hover:border-violet-600 font-normal shadow-md shadow-violet-200;
+  }
 
 }
