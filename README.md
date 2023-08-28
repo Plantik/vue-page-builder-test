@@ -10,7 +10,9 @@ Comments:
 
 3 - I used different approaches to styling to show the availavle options (not all). Also I used slots a lot as they are reccomended by the Vue team
 
-4 - I estimate the time I spent on the at 7-9 hours. I split the project in logical commits in this rep, but initially I worked differently in another repository trying various options and saving the results for my own library. 
+4 - I estimate the time I spent on the test at 7-9 hours. I split the project in logical commits in this rep, but initially I worked differently in another repository trying various options and saving the results for my own library. 
+
+5 - I wrote a couple tests as an example. As stated in item two, the good tests for main functionality can be written after further modulirazation
 
 ## Project Setup
 
