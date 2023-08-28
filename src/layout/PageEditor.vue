@@ -4,7 +4,7 @@
         <section :class="$style.mainContent">
           <div :class="$style.editorArea">
             <p class="mb-10 text-2xl font-bold">Editor Area</p>
-            <div class="h-screen w-full bg-slate-100"></div>
+            <DropZone/>
           </div>
         </section>
         <section :class="$style.sideMenuComponent">
@@ -20,6 +20,7 @@
   </template>
   
   <script setup>
+  import DropZone from '@/components/DropZone.vue'
  import TextBlockThumbnail from '@/components/TextBlockThumbnail.vue'
  import ImageBlockThumbnail from '@/components/ImageBlockThumbnail.vue'
   
