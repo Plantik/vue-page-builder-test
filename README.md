@@ -1,14 +1,16 @@
 # Simple Page Builder
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a test assignment for MailerLite. The Basic Page Builder Starter was built by Anton Platonov.
 
-## Recommended IDE Setup
+Comments:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1 - Created a simple disign without strictly adhering to UI/UX principles. All elements like buttons should be avstracted to UI vue components and styled according to the selected design system. Didn't do that in order to spend more time on building the essential funcionality
 
-## Customize configuration
+2 - The app should be further modularized especially in the part of drag and drop compoennts, drop zones and draggable elements. I would think of TDD for d&d functionality as big chunks of dom related code are difficult to test
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+3 - I used different approaches to styling to show the availavle options (not all). Also I used slots a lot as they are reccomended by the Vue team
+
+4 - I estimate the time I spent on the at 7-9 hours. I split the project in logical commits in this rep, but initially I worked differently in another repository trying various options and saving the results for my own library. 
 
 ## Project Setup
 
@@ -20,6 +22,12 @@ npm install
 
 ```sh
 npm run dev
+```
+
+### Run tests
+
+```sh
+npm run test
 ```
 
 ### Compile and Minify for Production

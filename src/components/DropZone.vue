@@ -7,7 +7,7 @@
     >
       <template v-slot:modal-header>Select image</template>
       <template v-slot:modal-content>
-        <!-- Below <div> should be abstracted into a separete ImageSelector component that would be populated 
+        <!-- Below <div> should be abstracted into a separate ImageSelector component that would be populated 
           with images from the server and have it's own drop functionality to add user-generated images
         -->
         <div class="w-full h-full">
@@ -121,37 +121,39 @@ if (localStorage.getItem('blocksData')) {
   blocks.value = JSON.parse(localStorage.getItem('blocksData'))
 }
 
-
 const handleDrop = (transferData) => {
   if (transferData.newItem) {
     const newBlock = {
       id: generateUniqueId(),
       ...transferData
-    };
+    }
 
-    const targetIndex = blocks.value.findIndex((item) => item.id === targetItemId.value);
+    const targetIndex = blocks.value.findIndex((item) => item.id === targetItemId.value)
 
     if (targetIndex !== -1) {
-      blocks.value.splice(targetIndex, 0, newBlock);
+      blocks.value.splice(targetIndex, 0, newBlock)
     } else {
-      blocks.value.push(newBlock);
+      blocks.value.push(newBlock)
     }
   }
 
-  const draggedItemId = transferData.itemId;
-  if (!draggedItemId) return;
 
-  const draggedItemIndex = blocks.value.findIndex((item) => item.id === draggedItemId);
-  const targetIndex = blocks.value.findIndex((item) => item.id === targetItemId.value);
+  // A more complicated logic should include the coordinates of the dragged 
+  // item and the target item as well as the size of the dragged item to place it anywhere in the drop zone
+
+  const draggedItemId = transferData.itemId
+  if (!draggedItemId) return
+
+  const draggedItemIndex = blocks.value.findIndex((item) => item.id === draggedItemId)
+  const targetIndex = blocks.value.findIndex((item) => item.id === targetItemId.value)
 
   if (draggedItemIndex !== -1 && targetIndex !== -1 && draggedItemIndex !== targetIndex) {
-    const [draggedItem] = blocks.value.splice(draggedItemIndex, 1);
-    blocks.value.splice(targetIndex, 0, draggedItem);
+    const [draggedItem] = blocks.value.splice(draggedItemIndex, 1)
+    blocks.value.splice(targetIndex, 0, draggedItem)
   }
 
-  targetItemId.value = null;
-};
-
+  targetItemId.value = null
+}
 
 const setTargetItem = (itemId) => {
   targetItemId.value = itemId
@@ -164,7 +166,7 @@ watch(blocksJSON, (newBlocksJSON) => {
   localStorage.setItem('blocksData', newBlocksJSON)
 })
 
-//Actions with blocks
+//Actions with blocks. As there will be more blocks, actions will be moved to a separate file
 
 const handleBlockAction = (id, actionType) => {
   const index = blocks.value.findIndex((item) => item.id === id)
@@ -198,23 +200,21 @@ function duplicateText(id) {
   handleBlockAction(id, 'duplicate')
 }
 
-
 // updateText should be unit tested tested
 
 function updateText(id, text) {
   const index = blocks.value.findIndex((item) => item.id === id)
   const item = blocks.value[index]
-    blocks.value.splice(index, 1, {
-      ...item,
-      text: text
-    })
+  blocks.value.splice(index, 1, {
+    ...item,
+    text: text
+  })
 }
 
 function prepareImage(id) {
   isModalOverlayVisible.value = true
   imageCardId.value = id
 }
-
 
 // setNewImage should be unit tested
 
@@ -223,7 +223,7 @@ function setNewImage() {
   const item = blocks.value[index]
   isModalOverlayVisible.value = false
 
-  //SetTimout emulates network delay. TODO: replace with real network call, add loading state and spinner
+//SetTimout emulates network delay. TODO: replace with real network call, add loading state and spinner
   setTimeout(() => {
     blocks.value.splice(index, 1, {
       ...item,

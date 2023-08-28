@@ -10,7 +10,7 @@
 </template>
 
 <script>
-// Using Options API as this is based on a component which I developed earlier for another project
+// Using Options API as this is based on a component which I developed earlier for another project creating a Kanban board
 
 export default {
   data() {

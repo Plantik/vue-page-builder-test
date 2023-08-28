@@ -25,12 +25,12 @@ import DropZone from '@/components/DropZone.vue'
 import TextBlockThumbnail from '@/components/TextBlockThumbnail.vue'
 import ImageBlockThumbnail from '@/components/ImageBlockThumbnail.vue'
 import { ref } from 'vue'
-const JSONtoSendToServer = ref('')
+const JSONtoSendToServer = ref()
 
 //Should be stored in Pinia
 
 const prepareJSONtoSendToServer = () => {
-  JSONtoSendToServer.value = JSON.parse(localStorage.getItem('blocksData'))
+  JSONtoSendToServer.value = JSON.parse(localStorage.getItem('blocksData')).length ? JSON.parse(localStorage.getItem('blocksData')) : 'No saved data'
 }
 </script>
 
